@@ -1,0 +1,16 @@
+.searchbus-container{
+    width:100%;
+    height: auto;
+    min-height: 80vh;
+    background: url('https://s3.rdbuz.com/images/webplatform/india/Homepage-header-1600.webp');
+}
+
+.search-bar{
+    width:70%;
+    height: 100px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    position:relative;
+    cursor:pointer;
+}

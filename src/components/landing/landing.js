@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Select } from 'antd';
+import {Link} from 'react-router-dom'
 
 function Landing(){
     function navigate(){
@@ -8,15 +9,16 @@ function Landing(){
     return(
 
         <>
-        <div style={{display:'flex', width:'100%',marginTop:'90px'}}>
-            <div style={{width:'50%',borderRadius: "30px",backgroundColor: "#b6b644",margin: "21px",padding:'100px'}}>
-            <span>
+        <div style={{display:'flex', width:'100%'}}>
+            <div style={{width:'50%',borderRadius: "30px",backgroundColor: "rgb(68 132 182)",color:'white',margin: "21px",padding:'100px'}}>
+            <span >
             <h1 style={{fontSize:'60px'}}>Book Your Bus Today</h1>
             Stay on track with real time bus timings to plan your journey with confidence. <br></br>
             Never miss a bus again !!!
             </span>
-            <Button onClick={navigate} type="default" style={{backgroundColor:'green',color:'white',border:'none',marginTop:'20px'}} block>
-      Explore
+            
+            <Button  type="default" style={{backgroundColor:'green',color:'white',border:'none',marginTop:'20px'}} block>
+            <Link to={'search'}>Track Your Bus</Link>
     </Button>
             </div>
             <div style={{width:'50%'}}>
@@ -25,9 +27,7 @@ function Landing(){
         </div>
 
         <div style={{width:'100%'}}>
-            <h1 style={{fontSize:'50pxs',textAlign:'center',fontSize:'50px'}}>
-                Discover The Best Bus Routes and Schedule...
-            </h1>
+            
             <div style={{backgroundColor:'whitesmoke',width:'100%'}}></div>
         </div>
         </>
