@@ -10,7 +10,7 @@ function Landing(){
 
         <>
         <div style={{display:'flex', width:'100%'}}>
-            <div style={{width:'50%',borderRadius: "30px",backgroundColor: "rgb(68 132 182)",color:'white',margin: "21px",padding:'100px'}}>
+            <div style={{width:'50%',borderRadius: "30px",backgroundColor: "rgb(68 132 182)",color:'white',margin: "21px",padding:'70px'}}>
             <span >
             <h1 style={{fontSize:'60px'}}>Book Your Bus Today</h1>
             Stay on track with real time bus timings to plan your journey with confidence. <br></br>
@@ -21,8 +21,8 @@ function Landing(){
             <Link to={'search'}>Track Your Bus</Link>
     </Button>
             </div>
-            <div style={{width:'50%'}}>
-                <img src="https://i.pinimg.com/736x/d3/ab/7e/d3ab7e69dd4ed4daca74ee06633cc084.jpg"></img>
+            <div style={{width:'50%', display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <img src="https://banner2.cleanpng.com/20180127/ube/av2pxk00y.webp" width={500}></img> //https://banner2.cleanpng.com/20180725/xtl/21a1e435f98afd6c1e577c8b572d2ae4.webp
             </div>
         </div>
 

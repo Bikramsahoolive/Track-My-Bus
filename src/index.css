@@ -18,6 +18,6 @@ code {
 }
 
 .ant-select-selector{
-  border: none;
-  outline: none;
+  border: none !important;
+  box-shadow: none !important;
 }

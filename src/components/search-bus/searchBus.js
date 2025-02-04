@@ -75,25 +75,39 @@ function SearchBus() {
       <div style={{ width: '100%', height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div className='search-bar'>
           <div className='from-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
-            <div style={{ padding: '17px', width: '15%' }}>
+            <div style={{ padding: '10px 0 10px 20px', width: '20%', minWidth:'50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-walking fa-flip-horizontal" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-1px', zIndex: '1' }}></i>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
               <label>From</label>
               <SearchInput
-                placeholder="input search text"
+                placeholder=""
                 style={{ border: 'none', outline: 'none', fontSize: '15px', fontWeight: '600' }}
               />
             </div>
           </div>
+          <div className='swap' style={{position:'relative'}}>
+          <FloatButton
+            icon={<span class="material-symbols-outlined" style={{ color: 'gray' }}>
+              sync_alt
+            </span>}
+            type="default"
+            style={{
+              insetInlineEnd: 94,
+              position: 'absolute',
+              left: '-20px',
+              top: '30px'
+            }}
+          />
+          </div>
           <div className='to-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
-            <div style={{ padding: '17px', width: '25%' }}>
+            <div style={{ padding: '10px 0 10px 25px', width: '20%',minWidth:'50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-running" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-5px', zIndex: '1' }}></i>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
               <label>To</label>
               <SearchInput
-                placeholder="input search text"
+                placeholder=""
                 style={{ border: 'none', outline: 'none', fontSize: '15px', fontWeight: '600' }}
               />
             </div>
@@ -103,19 +117,6 @@ function SearchBus() {
           <div className='button-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(78 137 216)', borderRadius: '0px 30px 30px 0', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <h2>SEARCH BUSES</h2>
           </div>
-
-          <FloatButton
-            icon={<span class="material-symbols-outlined" style={{ color: 'gray' }}>
-              sync_alt
-            </span>}
-            type="default"
-            style={{
-              insetInlineEnd: 94,
-              position: 'absolute',
-              left: '245px',
-              top: '30px'
-            }}
-          />
         </div>
       </div>
     </div>
