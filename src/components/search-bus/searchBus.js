@@ -1,10 +1,31 @@
 import './searchBus.css';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { FloatButton } from 'antd';
+import { FloatButton,DatePicker,Space } from 'antd';
 import React, { useState } from 'react';
 import { Select } from 'antd';
 import jsonp from 'fetch-jsonp';
 import qs from 'qs';
+
+
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+
+dayjs.extend(customParseFormat);
+const { RangePicker } = DatePicker;
+const dateFormat = 'YYYY/MM/DD';
+const weekFormat = 'MM/DD';
+const monthFormat = 'YYYY/MM';
+
+/** Manually entering any of the following formats will perform date parsing */
+const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
+const customFormat = (value) => `custom format: ${value.format(dateFormat)}`;
+const customWeekStartEndFormat = (value) =>
+  `${dayjs(value).startOf('week').format(weekFormat)} ~ ${dayjs(value)
+    .endOf('week')
+    .format(weekFormat)}`;
+
+
 let timeout;
 let currentValue;
 const fetch = (value, callback) => {
@@ -72,9 +93,9 @@ function SearchBus() {
       <h3 style={{ textAlign: 'center', fontSize: '50px', color: 'white', margin: '0', paddingTop: '50px' }}>
         Discover The Best Bus Routes and Schedule...
       </h3>
-      <div style={{ width: '100%', height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ width: '100%', height: '50vh', display: 'flex', justifyContent: 'center', marginTop:'55px' }}>
         <div className='search-bar'>
-          <div className='from-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
+          <div className='from-pannel' style={{ width: '27%',minWidth:'200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
             <div style={{ padding: '10px 0 10px 20px', width: '20%', minWidth:'50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-walking fa-flip-horizontal" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-1px', zIndex: '1' }}></i>
             </div>
@@ -100,7 +121,7 @@ function SearchBus() {
             }}
           />
           </div>
-          <div className='to-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
+          <div className='to-pannel' style={{ width: '27%',minWidth:'200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
             <div style={{ padding: '10px 0 10px 25px', width: '20%',minWidth:'50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-running" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-5px', zIndex: '1' }}></i>
             </div>
@@ -113,8 +134,15 @@ function SearchBus() {
             </div>
 
           </div>
-          <div className='date-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4' }}></div>
-          <div className='button-pannel' style={{ width: '25%', height: '100px', backgroundColor: 'rgb(78 137 216)', borderRadius: '0px 30px 30px 0', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className='date-pannel' style={{ width: '27%',minWidth:'200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
+          <div style={{ padding: '10px 0 10px 25px', width: '20%',minWidth:'50px' }}>
+          <i class="fa-regular fa-calendar-days" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
+          <DatePicker suffixIcon='' superNextIcon='' superPrevIcon='' popupStyle='' inputReadOnly='true' size='large' defaultValue='' format={dateFormatList} placeholder='' style={{fontSize: '25px', fontWeight: '600' }} />
+          </div>
+          </div>
+          <div className='button-pannel'>
             <h2>SEARCH BUSES</h2>
           </div>
         </div>

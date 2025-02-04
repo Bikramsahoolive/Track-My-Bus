@@ -5,12 +5,13 @@ import {Link} from 'react-router-dom'
 function Landing(){
     function navigate(){
         alert('clicked');
+        //https://banner2.cleanpng.com/20180725/xtl/21a1e435f98afd6c1e577c8b572d2ae4.webp
     }
     return(
 
         <>
         <div style={{display:'flex', width:'100%'}}>
-            <div style={{width:'50%',borderRadius: "30px",backgroundColor: "rgb(68 132 182)",color:'white',margin: "21px",padding:'70px'}}>
+            <div style={{width:'40%',borderRadius: "30px",zIndex:'2',backgroundColor: "rgb(68 132 182)",color:'white',margin: "21px",padding:'70px'}}>
             <span >
             <h1 style={{fontSize:'60px'}}>Book Your Bus Today</h1>
             Stay on track with real time bus timings to plan your journey with confidence. <br></br>
@@ -21,8 +22,8 @@ function Landing(){
             <Link to={'search'}>Track Your Bus</Link>
     </Button>
             </div>
-            <div style={{width:'50%', display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <img src="https://banner2.cleanpng.com/20180127/ube/av2pxk00y.webp" width={500}></img> //https://banner2.cleanpng.com/20180725/xtl/21a1e435f98afd6c1e577c8b572d2ae4.webp
+            <div style={{width:'60%', display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <img src="https://i.pinimg.com/736x/d3/29/ea/d329ea3c6d046735095cfff6bc79dd20.jpg" width={600}></img> 
             </div>
         </div>
 
