@@ -1,0 +1,135 @@
+.search-card{
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    height: auto;
+    transition: all 0.3s;
+    display:flex;
+}
+.search-card:hover{
+    box-shadow: 0 0 15px 1px black;
+}
+
+.bus-info{
+width: 80%;
+padding:15px;
+position: relative;
+}
+
+.price-details{
+    width: 20%;
+    border-left: 1px solid rgb(172, 169, 169);
+    padding:15px;
+}
+.title{
+    margin:0;
+    text-align:center;
+    font-size:20px;
+    font-weight: 500;
+}
+.sub-title{
+    margin:5px
+}
+
+.bus-detail{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+}
+.bus-time{
+    display:flex;
+    align-items: center;
+}
+.duration-text{
+    border:1px solid gray;
+    border-radius:1.25rem;
+    padding:3px 10px;
+    width:60px;
+    color:gray;
+    
+}
+.dot{
+    width: 3px;
+    height: 3px;
+    background-color: #9a9a9a;
+    border-radius: 50%;
+}
+.duration-text:hover{
+    border:1px solid rgb(14, 13, 13);
+    cursor: pointer;
+}
+.departure span{
+    font-size: 20px;
+    font-weight: 700;
+}
+.arival span{
+    font-size: 20px;
+    font-weight: 700;
+    color:gray;
+}
+
+.rating{
+    background-color: rgb(23, 141, 23);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 8px 0 0 8px;
+    width: auto;
+    display:flex;
+    align-items: center;
+}
+.rating-user{
+    background-color: rgb(231 231 231);
+    padding: 5px 8px;
+    border-radius: 0 8px 8px 0;
+    width: auto;
+    display:flex;
+    align-items: center;
+}
+.price-container{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.price-container .price-value{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.booking-btn{
+    background-color: #4e89d88a;
+    border-radius: 5px;
+    padding: 0px 0 10px 0;
+}
+.book-btn{
+    width: 100%;
+    background-color: #0b5ac28a;
+    color:white;
+    border:none;
+    outline:none;
+    border-radius: 5px;
+    padding:10px 10px;
+    cursor: not-allowed;
+}
+
+.book-btn:hover{
+    background-color: #0836728a;
+}
+
+.extra-info{
+    color: gray;
+    cursor:pointer;
+}
+.extra-info:hover{
+    color: #1d68aa;
+}
+.low-seat{
+    color:red;
+}
+.avl-seat{
+    color:#168716;
+}

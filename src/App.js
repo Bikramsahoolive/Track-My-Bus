@@ -7,7 +7,7 @@ import{Outlet,Link} from 'react-router-dom'
 function App() {
   return (
     <>
-    <nav style={{display:'flex', position:'fixed',top:0, width:'100%',alignItems:'center',justifyContent:'space-between',padding:'5px 0px', overflow:'hidden',boxShadow:'-1px 1px 5px 2px gray',backgroundColor:'white',zIndex:'5'}}>
+    <nav style={{display:'flex', position:'fixed',zIndex:'10',top:0, width:'100%',alignItems:'center',justifyContent:'space-between',padding:'5px 0px', overflow:'hidden',boxShadow:'-1px 1px 5px 2px gray',backgroundColor:'white',zIndex:'5'}}>
       <h1 style={{padding:'0 10px'}}>Logo</h1>
       <ul style={{display:'flex',listStyle:'none',gap:'20px',cursor:'pointer'}}>
         <li><Link style={{textDecoration:'none'}} to={'/'}>Home</Link></li>

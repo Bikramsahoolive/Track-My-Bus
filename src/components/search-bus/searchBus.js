@@ -1,6 +1,6 @@
 import './searchBus.css';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { FloatButton,DatePicker,Space } from 'antd';
+import { FloatButton, DatePicker, Space,ConfigProvider } from 'antd';
 import React, { useState } from 'react';
 import { Select } from 'antd';
 import jsonp from 'fetch-jsonp';
@@ -9,6 +9,8 @@ import qs from 'qs';
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+import Buslist from '../bus-list/buslist';
 
 
 dayjs.extend(customParseFormat);
@@ -88,15 +90,20 @@ const SearchInput = (props) => {
 };
 
 function SearchBus() {
+  const [searchClass, setSearchClass] = useState('search-bar');
+
+  function searchAllBuses() {
+    setSearchClass('search-bar hide-search');
+  }
   return (<>
     <div className="searchbus-container" >
       <h3 style={{ textAlign: 'center', fontSize: '50px', color: 'white', margin: '0', paddingTop: '50px' }}>
         Discover The Best Bus Routes and Schedule...
       </h3>
-      <div style={{ width: '100%', height: '50vh', display: 'flex', justifyContent: 'center', marginTop:'55px' }}>
-        <div className='search-bar'>
-          <div className='from-pannel' style={{ width: '27%',minWidth:'200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
-            <div style={{ padding: '10px 0 10px 20px', width: '20%', minWidth:'50px' }}>
+      <div style={{ width: '100%', height: '25vh', display: 'flex', justifyContent: 'center', marginTop: '55px' }}>
+        <div className={searchClass}>
+          <div className='from-pannel' style={{ width: '27%', minWidth: '200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: '10px 0 10px 20px', width: '20%', minWidth: '50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-walking fa-flip-horizontal" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-1px', zIndex: '1' }}></i>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
@@ -107,9 +114,19 @@ function SearchBus() {
               />
             </div>
           </div>
-          <div className='swap' style={{position:'relative'}}>
-          <FloatButton
-            icon={<span class="material-symbols-outlined" style={{ color: 'gray' }}>
+          <div className='swap' style={{ position: 'relative' }}>
+
+            <ConfigProvider
+              theme={{
+                token: {
+                  /* here is your global tokens */
+                  zIndexPopupBase:1
+                },
+              }}
+            >
+              <FloatButton
+          zIndexPopupBase='1'
+            icon={<span class="material-symbols-outlined" style={{ color: 'gray',zIndex:'10' }}>
               sync_alt
             </span>}
             type="default"
@@ -120,9 +137,11 @@ function SearchBus() {
               top: '30px'
             }}
           />
+            </ConfigProvider>
+
           </div>
-          <div className='to-pannel' style={{ width: '27%',minWidth:'200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
-            <div style={{ padding: '10px 0 10px 25px', width: '20%',minWidth:'50px' }}>
+          <div className='to-pannel' style={{ width: '27%', minWidth: '200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: '10px 0 10px 25px', width: '20%', minWidth: '50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-running" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-5px', zIndex: '1' }}></i>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
@@ -134,18 +153,21 @@ function SearchBus() {
             </div>
 
           </div>
-          <div className='date-pannel' style={{ width: '27%',minWidth:'200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
-          <div style={{ padding: '10px 0 10px 25px', width: '20%',minWidth:'50px' }}>
-          <i class="fa-regular fa-calendar-days" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i>
+          <div className='date-pannel' style={{ width: '27%', minWidth: '200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
+            <div style={{ padding: '10px 0 10px 25px', width: '20%', minWidth: '50px' }}>
+              <i class="fa-regular fa-calendar-days" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
+              <DatePicker suffixIcon='' superNextIcon='' superPrevIcon='' popupStyle='' inputReadOnly='true' size='large' defaultValue='' format={dateFormatList} placeholder='' style={{ fontSize: '25px', fontWeight: '600' }} />
+            </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
-          <DatePicker suffixIcon='' superNextIcon='' superPrevIcon='' popupStyle='' inputReadOnly='true' size='large' defaultValue='' format={dateFormatList} placeholder='' style={{fontSize: '25px', fontWeight: '600' }} />
-          </div>
-          </div>
-          <div className='button-pannel'>
+          <div className='button-pannel' onClick={searchAllBuses}>
             <h2>SEARCH BUSES</h2>
           </div>
         </div>
+      </div>
+      <div className='result' style={{width:'100%', display:'flex',flexDirection:'column',gap:'10px',alignItems:'center',justifyContent:'center'}}>
+      <Buslist/>
       </div>
     </div>
   </>)
