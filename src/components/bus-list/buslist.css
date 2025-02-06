@@ -1,6 +1,6 @@
 .search-card{
-    width: 80%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 1000px;
     background-color: white;
     border-radius: 10px;
     height: auto;
@@ -8,7 +8,7 @@
     display:flex;
 }
 .search-card:hover{
-    box-shadow: 0 0 15px 1px black;
+    box-shadow: 0 0 15px 1px gray;
 }
 
 .bus-info{
@@ -52,7 +52,7 @@ position: relative;
 .dot{
     width: 3px;
     height: 3px;
-    background-color: #9a9a9a;
+    background-color: #040404;
     border-radius: 50%;
 }
 .duration-text:hover{
@@ -132,4 +132,15 @@ position: relative;
 }
 .avl-seat{
     color:#168716;
+}
+
+.vehicle-number{
+    display:flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid black;
+    background-color: rgb(172, 138, 15);
+    width: max-content;
+    padding: 0 5px;
+    border-radius: 5px;
 }

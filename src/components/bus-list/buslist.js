@@ -2,7 +2,7 @@ import './buslist.css';
 import React, { useEffect, useState } from 'react'
 import {Tooltip} from 'antd';
 function Buslist() {
-  const [avlSeat,setAvlSeat] = useState(13);
+  const [avlSeat,setAvlSeat] = useState(5);
   const[lowSeat,setLowseat] = useState('');
 
   useEffect(()=>{
@@ -52,7 +52,16 @@ function Buslist() {
 
       </div>
 
-      <div style={{padding:'10px 10px'}}> <i class="fa-solid fa-location-crosshairs"></i> <span style={{color:'gray',cursor:'not-allowed'}}> Live Tracking</span></div>
+      <div style={{padding:'10px 10px', display:'flex', alignItems:'center', gap:'10px'}}>
+        
+        <div className='vehicle-number'>
+          <div className='dot'></div>
+          <strong>OD 34 D 6454</strong>
+          <div className='dot'></div>
+        </div>
+        
+         <i class="fa-solid fa-location-crosshairs"></i> <span style={{color:'gray',cursor:'not-allowed'}}> Live Tracking</span>
+         </div>
 
       <hr className='divider'></hr>
       <div style={{display:'flex',alignItems:'center'}}>
