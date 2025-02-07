@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider,Routes, Route,createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import Landing from './components/landing/landing';
-import SearchBus from './components/search-bus/searchBus';
-import SearchResult from './components/search-result/searchResult';
+import Landing from './pages/landing/landing';
+import SearchBus from './pages/search-bus/searchBus';
+import SearchResult from './pages/search-result/searchResult';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([{

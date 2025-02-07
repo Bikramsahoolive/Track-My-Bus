@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import {Button, Flex} from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import './App.css';
-import Landing from './components/landing/landing';
+import Landing from './pages/landing/landing';
 import{Outlet,Link} from 'react-router-dom'
 function App() {
   return (
