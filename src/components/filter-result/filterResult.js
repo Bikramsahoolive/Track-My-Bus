@@ -2,6 +2,7 @@ import './filterResult.css';
 import React, { useState } from 'react'
 
 import { Checkbox,Slider } from 'antd';
+
 const priceDrop = (e) => {
   console.log(`checked = ${e.target.checked}`);
 };
@@ -11,11 +12,23 @@ export default function FilterResult() {
 
   let [clearData , setClearData] = useState(false);
 
-  function changeBusType(){
+  function changeBusType(e){
     
+    const classname = e.target.className;
+    if(classname.includes('active')){
+      e.target.className = 'filter-btn';
+    }else{
+      e.target.className = 'filter-btn active'
+    }
     
     
   }
+
+  function filterData({filterType,filterValue}){
+        
+        
+  }
+  function nothing(e){e.stopPropagation();}
   return (
     <>
         <div className='filter-content'>
@@ -38,9 +51,9 @@ export default function FilterResult() {
       <h5 style={{fontSize:'18px',margin:'15px'}}>Bus Type</h5>
         <div style={{width:'100%',display:'flex',flexWrap:'wrap', justifyContent:'center', gap:'10px'}}>
           
-        <div className='filter-btn ' onClick={()=>setClearData(true)}> 
-          <img src='https://cdn-icons-png.flaticon.com/512/112/112516.png' width={30}></img>
-          <small>AC</small>
+        <div className='filter-btn ' onClick={(e)=>changeBusType(e)}> 
+          <img src='https://cdn-icons-png.flaticon.com/512/112/112516.png' width={30} onClick={(e)=>nothing(e)}></img>
+          <small onClick={(e)=>nothing(e)}>AC</small>
         </div>
 
         <div className='filter-btn'>
