@@ -40,6 +40,7 @@
 
 .filter-btn{
     width: 20%;
+    min-width: 60px;
     height: 60px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -58,6 +59,7 @@
 
 .timeing-btn{
     width: 40%;
+    min-width:90px;
     height: 60px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;

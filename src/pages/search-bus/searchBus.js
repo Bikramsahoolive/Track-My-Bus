@@ -6,6 +6,8 @@ import { Select } from 'antd';
 import jsonp from 'fetch-jsonp';
 import qs from 'qs';
 
+import { useNavigate } from 'react-router-dom';
+
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -89,9 +91,10 @@ const SearchInput = (props) => {
 
 function SearchBus() {
   const [searchClass, setSearchClass] = useState('search-bar');
-
+  const navigate = useNavigate();
   function searchAllBuses() {
-    setSearchClass('search-bar hide-search');
+    // setSearchClass('search-bar hide-search');
+    navigate("/search-result?from=chandbali&to=bhubaneswar&doj=10/02/2025");
   }
   return (<>
     <div className="searchbus-container" >
