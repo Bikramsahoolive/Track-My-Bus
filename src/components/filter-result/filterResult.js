@@ -2,7 +2,7 @@ import './filterResult.css';
 import React, { useRef, useState } from 'react'
 
 import { 
-  // Checkbox,
+  Checkbox,
    Slider 
   } from 'antd';
 
@@ -38,9 +38,9 @@ export default function FilterResult() {
   let [clearData, setClearData] = useState(false);
 
 
-  // const priceDrop = (e) => {
-  //   console.log(`checked = ${e.target.checked}`);
-  // };
+  const accrued = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+  };
 
   function changeBusType(e) {
     if (e === 'ac-type') {
@@ -176,7 +176,8 @@ export default function FilterResult() {
       doj: '', //url query date of journey value
       busType: [],
       priceRange:[],
-      timing: []
+      timing: [],
+      accrued: 'all'
     }
 
     // make a API Call.
@@ -186,19 +187,30 @@ export default function FilterResult() {
   return (
     <>
       <div className='filter-content'>
+      <h4 style={{ textAlign: 'left', paddingLeft: '20px' }}>  Sort: </h4>
+      <div className='shot-input'>
+                        <div className='shot-input' style={{width:'100%',display:'flex',flexWrap:'wrap',alignItems:'center',justifyContent:'center',gap:'10px',padding:0,margin:0}}>
+                         <p> <span>💶</span> <span>Price <span className='up-arrow hide'>🡹</span> <span className='down-arrow hide'>🡻</span></span> </p> 
+                         <p> <span>💺</span> <span>Seat <span className='up-arrow hide'>🡹</span> <span className='down-arrow hide'>🡻</span></span> </p> 
+                         <p> <span>⭐</span> <span>Rating <span className='up-arrow hide'>🡹</span> <span className='down-arrow hide'>🡻</span></span> </p>
+                         <p> <span>🛬</span> <span>Arival <span className='up-arrow hide'>🡹</span> <span className='down-arrow hide'>🡻</span></span> </p>
+                         <p> <span>🛫</span> <span>Departure <span className='up-arrow hide'>🡹</span> <span className='down-arrow hide'>🡻</span> </span>  </p>
+                        </div>
+                    </div>
+                    <hr/>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
-          <h4 style={{ textAlign: 'left', paddingLeft: '20px' }}>Filters</h4>
+          <h4 style={{ textAlign: 'left' }}>Filters:</h4>
 
           {clearData ? <span style={{ cursor: 'pointer' }} onClick={setDefaultData}>Clear All</span> : ''}
 
         </div>
 
-        <hr style={{ width: '100%' }} />
+        {/* <hr style={{ width: '100%' }} /> */}
         
-        {/* <div className='price-drop'>
-            <h5 style={{fontSize:'18px',margin:'15px'}}>Price Drop</h5>
-            <Checkbox onChange={priceDrop}></Checkbox>
-        </div> */}
+        <div className='assured'>
+            <h5 style={{fontSize:'18px',margin:'15px'}}>Assured Buses</h5>
+            <Checkbox onChange={accrued}></Checkbox>
+        </div>
 
         <div className='bus-type'>
           <h5 style={{ fontSize: '18px', margin: '15px' }}>Bus Type</h5>

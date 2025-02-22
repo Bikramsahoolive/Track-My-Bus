@@ -16,7 +16,7 @@ function Buslist() {
     <div className='search-card'>
 
       <div className='bus-info'>
-        <small style={{position:'absolute',top:'20px',left:'63px', color:'white',fontStyle:'italic',fontWeight:600}}>Accrued</small>
+        <small style={{position:'absolute',top:'20px',left:'63px', color:'white',fontStyle:'italic',fontWeight:600}}>Assured</small>
       <div> <img src='https://static.vecteezy.com/system/resources/previews/024/158/642/non_2x/blank-sale-label-or-tag-sticky-in-blue-and-chrome-yellow-color-vector.jpg' width={100}></img></div>
       
       <div className='bus-detail'>
