@@ -1,5 +1,18 @@
 
-
+.search-nav{
+    background-color:rgb(38 80 137);
+    color:white;
+    border:none;
+    margin-top:20px;
+    display:block;
+    padding:10px 50px;
+    text-decoration:none;
+    text-align:center;
+    border-radius:8px;
+}
+.search-nav:hover{
+    background-color:rgb(19, 66, 133);
+}
 @media screen and (max-width:1078px) {
     
     
