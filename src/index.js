@@ -7,6 +7,7 @@ import { RouterProvider,Routes, Route,createBrowserRouter, createRoutesFromEleme
 import Landing from './pages/landing/landing';
 import SearchBus from './pages/search-bus/searchBus';
 import SearchResult from './pages/search-result/searchResult';
+import Login from './pages/login/login';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([{
@@ -24,6 +25,10 @@ const router = createBrowserRouter([{
     {
       path:'search-result',
       element:<SearchResult/>
+    },
+    {
+      path:'login',
+      element:<Login/>
     }
   ]
 }])

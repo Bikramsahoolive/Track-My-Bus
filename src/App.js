@@ -14,7 +14,7 @@ function App() {
         <li>About</li>
         <li>Contact Us</li>
       </ul>
-      <Button type="primary" style={{marginRight:"20px"}}> <LoginOutlined /> Login</Button>
+      <Button type="primary" style={{marginRight:"20px"}}> <LoginOutlined /><Link style={{textDecoration:'none'}} to={'/login'}>login</Link></Button>
     </nav>
     <div style={{height:'10vh',width:'100%'}}></div>
     <Outlet/>
