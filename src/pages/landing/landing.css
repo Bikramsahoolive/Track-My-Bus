@@ -1,4 +1,22 @@
-
+.content{
+    display:flex;
+    width:100%;
+}
+.hero-cad{
+    width:40%;
+    border-radius:30px;
+    z-index:2;
+    background-color:rgb(68 132 182);
+    color:white;
+    margin:21px;
+    padding:70px;
+}
+.hero-img{
+    width:60%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 .search-nav{
     background-color:rgb(38 80 137);
     color:white;
@@ -14,6 +32,23 @@
     background-color:rgb(19, 66, 133);
 }
 @media screen and (max-width:1078px) {
+    .content{
+        flex-direction: column;
+    }
+    .hero-cad{
+        width:unset;
+    }
+    .hero-img{
+        width:100%;
+    }
     
-    
+}
+
+@media screen and (max-width:600px) {
+    .hero-cad{
+        padding:20px;
+    }
+    .hero-img{
+        display:none;
+    }
 }

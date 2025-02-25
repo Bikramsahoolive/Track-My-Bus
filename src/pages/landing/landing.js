@@ -10,8 +10,8 @@ function Landing(){
     return(
 
         <>
-        <div style={{display:'flex', width:'100%'}}>
-            <div style={{width:'40%',borderRadius: "30px",zIndex:'2',backgroundColor: "rgb(68 132 182)",color:'white',margin: "21px",padding:'70px'}}>
+        <div className='content'>
+            <div className='hero-cad'>
             <span >
             <h1 style={{fontSize:'60px'}}>Track Your Bus Today</h1>
             Stay on track with real time bus timings to plan your journey with confidence. <br></br>
@@ -22,7 +22,7 @@ function Landing(){
             <Link to={'search'} className='search-nav'>Search Your Bus</Link>
    
             </div>
-            <div style={{width:'60%', display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <div className='hero-img'>
                 <img src="https://i.pinimg.com/736x/d3/29/ea/d329ea3c6d046735095cfff6bc79dd20.jpg" width={600}></img> 
             </div>
         </div>
