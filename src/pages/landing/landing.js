@@ -10,7 +10,7 @@ function Landing(){
     return(
 
         <>
-        <div className='content'>
+        <div className='hero-content'>
             <div className='hero-cad'>
             <span >
             <h1 style={{fontSize:'60px'}}>Track Your Bus Today</h1>
