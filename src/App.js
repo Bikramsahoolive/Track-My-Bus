@@ -8,13 +8,14 @@ function App() {
   return (
     <>
     <nav style={{display:'flex', position:'fixed',zIndex:'10',top:0, width:'100%',height:'10vh',alignItems:'center',justifyContent:'space-between',padding:'5px 0px', overflow:'hidden',boxShadow:'-1px 1px 5px 2px gray',backgroundColor:'white'}}>
-      <h1 style={{padding:'0 10px'}}>Logo</h1>
+      
+      <Link style={{textDecoration:'none'}} to={'/'}><h1 style={{padding:'0 10px',color:'rgb(38 80 137)'}}>Logo</h1></Link>
       <ul style={{display:'flex',listStyle:'none',gap:'20px',cursor:'pointer'}}>
-        <li><Link style={{textDecoration:'none'}} to={'/'}>Home</Link></li>
+        {/* <li>Home</li>
         <li>About</li>
-        <li>Contact Us</li>
+        <li>Contact Us</li> */}
       </ul>
-      <Button type="primary" style={{marginRight:"20px"}}> <LoginOutlined /><Link style={{textDecoration:'none'}} to={'/login'}>login</Link></Button>
+      <Link style={{textDecoration:'none'}} to={'/login'}><Button type="primary" style={{marginRight:"20px"}}> <LoginOutlined />login</Button></Link>
     </nav>
     <div style={{height:'10vh',width:'100%'}}></div>
     <Outlet/>
