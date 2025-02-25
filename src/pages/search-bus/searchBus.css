@@ -3,6 +3,7 @@
     height: 90vh;
     background: url('https://shinebus.com/shinetourandtravels/slider/images/site/online-bus-ticket-booking-shine-tour-travels-01.jpg');
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .search-bar{
@@ -36,4 +37,15 @@
 }
 .button-pannel:hover{
     background-color: rgb(38 80 137);
+}
+
+@media screen and (max-width:800px) {
+    .searchbus-container{
+        background: url('https://t3.ftcdn.net/jpg/06/61/99/96/360_F_661999646_Q4OLCLlUZf6AqxKOayZBdh4Is4Uam3JQ.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }   
+    .search-bar{
+        display:none;
+    }
 }

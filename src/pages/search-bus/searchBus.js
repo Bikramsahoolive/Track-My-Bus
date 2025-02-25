@@ -1,6 +1,6 @@
 import './searchBus.css';
 // import { QuestionCircleOutlined } from '@ant-design/icons';
-import { FloatButton, DatePicker,Select, Space,ConfigProvider } from 'antd';
+import { FloatButton, DatePicker,Select, Space,ConfigProvider, AutoComplete } from 'antd';
 import React, { useState } from 'react';
 import jsonp from 'fetch-jsonp';
 import qs from 'qs';
@@ -27,38 +27,50 @@ const customWeekStartEndFormat = (value) =>
     .format(weekFormat)}`;
 
 
-let timeout;
-let currentValue;
-const fetch = (value, callback) => {
-  if (timeout) {
-    clearTimeout(timeout);
-    timeout = null;
-  }
-  currentValue = value;
-  const fake = () => {
-    const str = qs.stringify({
-      code: 'utf-8',
-      q: value,
+
+    const mockVal = (str, repeat = 1) => ({
+      value: str.repeat(repeat),
+      label: (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <i class="fa-solid fa-tree-city" style={{ marginRight: 8 }}></i>
+          {str.repeat(repeat)}
+        </div>
+      ),
     });
-    jsonp(`https://suggest.taobao.com/sug?${str}`)
-      .then((response) => response.json())
-      .then((d) => {
-        if (currentValue === value) {
-          const { result } = d;
-          const data = result.map((item) => ({
-            value: item[0],
-            text: item[0],
-          }));
-          callback(data);
-        }
-      });
-  };
-  if (value) {
-    timeout = setTimeout(fake, 300);
-  } else {
-    callback([]);
-  }
-};
+
+
+// let timeout;
+// let currentValue;
+// const fetch = (value, callback) => {
+//   if (timeout) {
+//     clearTimeout(timeout);
+//     timeout = null;
+//   }
+//   currentValue = value;
+//   const fake = () => {
+//     const str = qs.stringify({
+//       code: 'utf-8',
+//       q: value,
+//     });
+//     jsonp(`https://suggest.taobao.com/sug?${str}`)
+//       .then((response) => response.json())
+//       .then((d) => {
+//         if (currentValue === value) {
+//           const { result } = d;
+//           const data = result.map((item) => ({
+//             value: item[0],
+//             text: item[0],
+//           }));
+//           callback(data);
+//         }
+//       });
+//   };
+//   if (value) {
+//     timeout = setTimeout(fake, 300);
+//   } else {
+//     callback([]);
+//   }
+// };
 const SearchInput = (props) => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState();
@@ -95,12 +107,26 @@ function SearchBus() {
     // setSearchClass('search-bar hide-search');
     navigate("/search-result?from=chandbali&to=bhubaneswar&doj=10/02/2025");
   }
+
+
+  const [value, setValue] = useState('');
+  const [options, setOptions] = useState([]);
+  const [anotherOptions, setAnotherOptions] = useState([]);
+  const getPanelValue = (searchText) =>
+    !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
+  const onSelect = (data) => {
+    console.log('onSelect', data);
+  };
+  const onChange = (data) => {
+    setValue(data);
+  };
+
   return (<>
     <div className="searchbus-container" >
       <h3 style={{ textAlign: 'center', fontSize: '50px', color: 'white', margin: '0', paddingTop: '50px' }}>
         Discover The Best Bus Routes and Schedule...
       </h3>
-      <div style={{ width: '100%', height: '25vh', display: 'flex', justifyContent: 'center', marginTop: '55px' }}>
+      <div style={{ width: '100%', height: '25vh', display: 'flex', justifyContent: 'center', marginTop:'30px' }}>
         <div className={searchClass}>
           <div className='from-pannel' style={{ width: '27%', minWidth: '200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
             <div style={{ padding: '10px 0 10px 20px', width: '20%', minWidth: '50px' }}>
@@ -108,10 +134,22 @@ function SearchBus() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
               <label>From</label>
-              <SearchInput
+              {/* <SearchInput
                 placeholder=""
                 style={{ border: 'none', outline: 'none', fontSize: '15px', fontWeight: '600' }}
-              />
+              /> */}
+
+            <AutoComplete
+            // prefix={<i class="fa-solid fa-bus-simple"></i>}
+            // defaultValue={''}
+            notFoundContent={'No Data Found!'}
+            allowClear
+            options={options}
+            size='large'
+            onSelect={onSelect}
+            onSearch={(text) => setOptions(getPanelValue(text))}
+            // placeholder="input here"
+          />
             </div>
           </div>
           <div className='swap' style={{ position: 'relative' }}>
@@ -146,10 +184,23 @@ function SearchBus() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
               <label>To</label>
-              <SearchInput
+              {/* <SearchInput
                 placeholder=""
                 style={{ border: 'none', outline: 'none', fontSize: '15px', fontWeight: '600' }}
-              />
+              /> */}
+
+<AutoComplete
+            // prefix={<i class="fa-solid fa-bus-simple"></i>}
+            // defaultValue={''}
+            notFoundContent={'No Data Found!'}
+            allowClear
+            options={options}
+            size='large'
+            onSelect={onSelect}
+            onSearch={(text) => setOptions(getPanelValue(text))}
+            // placeholder="input here"
+          />
+
             </div>
 
           </div>
