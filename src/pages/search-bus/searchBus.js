@@ -1,9 +1,7 @@
 import './searchBus.css';
 // import { QuestionCircleOutlined } from '@ant-design/icons';
-import { FloatButton, DatePicker,Select, Space,ConfigProvider, AutoComplete } from 'antd';
+import { FloatButton, DatePicker, ConfigProvider, AutoComplete } from 'antd';
 import React, { useState } from 'react';
-import jsonp from 'fetch-jsonp';
-import qs from 'qs';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -28,128 +26,93 @@ const customWeekStartEndFormat = (value) =>
 
 
 
-    const mockVal = (str, repeat = 1) => ({
-      value: str.repeat(repeat),
-      label: (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <i class="fa-solid fa-tree-city" style={{ marginRight: 8 }}></i>
-          {str.repeat(repeat)}
-        </div>
-      ),
-    });
+const mockVal = (str, repeat = 1) => ({
+  value: str.repeat(repeat),
+  label: (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <i class="fa-solid fa-tree-city" style={{ marginRight: 8 }}></i>
+      {str.repeat(repeat)}
+    </div>
+  ),
+});
 
-
-// let timeout;
-// let currentValue;
-// const fetch = (value, callback) => {
-//   if (timeout) {
-//     clearTimeout(timeout);
-//     timeout = null;
-//   }
-//   currentValue = value;
-//   const fake = () => {
-//     const str = qs.stringify({
-//       code: 'utf-8',
-//       q: value,
-//     });
-//     jsonp(`https://suggest.taobao.com/sug?${str}`)
-//       .then((response) => response.json())
-//       .then((d) => {
-//         if (currentValue === value) {
-//           const { result } = d;
-//           const data = result.map((item) => ({
-//             value: item[0],
-//             text: item[0],
-//           }));
-//           callback(data);
-//         }
-//       });
-//   };
-//   if (value) {
-//     timeout = setTimeout(fake, 300);
-//   } else {
-//     callback([]);
-//   }
-// };
-const SearchInput = (props) => {
-  const [data, setData] = useState([]);
-  const [value, setValue] = useState();
-  const handleSearch = (newValue) => {
-    fetch(newValue, setData);
-  };
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
-  return (
-    <Select
-      showSearch
-      value={value}
-      placeholder={props.placeholder}
-      style={props.style}
-      defaultActiveFirstOption={false}
-      suffixIcon={null}
-      filterOption={false}
-      onSearch={handleSearch}
-      onChange={handleChange}
-      notFoundContent={null}
-      options={(data || []).map((d) => ({
-        value: d.value,
-        label: d.text,
-      }))}
-    />
-  );
-};
 
 function SearchBus() {
-  const [searchClass, setSearchClass] = useState('search-bar');
+
   const navigate = useNavigate();
   function searchAllBuses() {
-    // setSearchClass('search-bar hide-search');
-    navigate("/search-result?from=chandbali&to=bhubaneswar&doj=10/02/2025");
+    // console.log(fromValue,toVal);
+    if (!fromValue || !toVal || !dateVal) return alert('Invalid Input.');
+
+    navigate(`/search-result?from=${fromValue}&to=${toVal}&doj=${dateVal}`);
   }
 
 
-  const [value, setValue] = useState('');
-  const [options, setOptions] = useState([]);
-  const [anotherOptions, setAnotherOptions] = useState([]);
-  const getPanelValue = (searchText) =>
+  const [fromValue, setFromValue] = useState('');
+  const [fromOptions, setFromOptions] = useState([]);
+  // const [anotherOptions, setAnotherOptions] = useState([]);
+  const getFromPanelValue = (searchText) =>
     !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
-  const onSelect = (data) => {
+  const onFromSelect = (data) => {
     console.log('onSelect', data);
   };
-  const onChange = (data) => {
-    setValue(data);
+  const onFromChange = (data) => {
+    setFromValue(data);
   };
+
+
+
+  const [toVal, setToVal] = useState('');
+  const [toOptions, setToOptions] = useState([]);
+  // const [anotherOptions, setAnotherOptions] = useState([]);
+  const getToPanelValue = (searchText) =>
+    !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
+  const onToSelect = (data) => {
+    console.log('onSelect', data);
+  };
+  const onToChange = (data) => {
+    setToVal(data);
+  };
+
+  const [dateVal, setDateVal] = useState('');
+  const onDateChange = (date, dateString) => {
+    // console.log(date, dateString);
+    setDateVal(dateString)
+  };
+
+  function swapVal() {
+    let swap = fromValue
+    setFromValue(toVal);
+    setToVal(swap);
+  }
 
   return (<>
     <div className="searchbus-container" >
       <h3 style={{ textAlign: 'center', fontSize: '50px', color: 'white', margin: '0', paddingTop: '50px' }}>
         Discover The Best Bus Routes and Schedule...
       </h3>
-      <div style={{ width: '100%', height: '25vh', display: 'flex', justifyContent: 'center', marginTop:'30px' }}>
-        <div className={searchClass}>
+      <div style={{ width: '100%', height: '25vh', display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+        <div className="search-bar">
           <div className='from-pannel' style={{ width: '27%', minWidth: '200px', height: '100px', backgroundColor: 'rgb(255 255 255)', borderRadius: '30px 0 0 30px', borderRight: '1px solid #d4d4d4', display: 'flex', alignItems: 'center' }}>
             <div style={{ padding: '10px 0 10px 20px', width: '20%', minWidth: '50px' }}>
               <i class="fa-solid fa-bus-simple" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i><i class="fa-solid fa-person-walking fa-flip-horizontal" style={{ fontSize: '25px', color: 'gray', position: 'relative', left: '-1px', zIndex: '1' }}></i>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
               <label>From</label>
-              {/* <SearchInput
-                placeholder=""
-                style={{ border: 'none', outline: 'none', fontSize: '15px', fontWeight: '600' }}
-              /> */}
 
-            <AutoComplete
-            // prefix={<i class="fa-solid fa-bus-simple"></i>}
-            // defaultValue={''}
-            notFoundContent={'No Data Found!'}
-            allowClear
-            options={options}
-            size='large'
-            onSelect={onSelect}
-            onSearch={(text) => setOptions(getPanelValue(text))}
-            // placeholder="input here"
-          />
+              <AutoComplete
+                // prefix={<i class="fa-solid fa-bus-simple"></i>}
+                // defaultValue={''}
+                value={fromValue}
+                onChange={onFromChange}
+                notFoundContent={'No Data Found!'}
+                allowClear
+                options={fromOptions}
+                size='large'
+                onSelect={onFromSelect}
+                onSearch={(text) => setFromOptions(getFromPanelValue(text))}
+              // placeholder="input here"
+              />
             </div>
           </div>
           <div className='swap' style={{ position: 'relative' }}>
@@ -158,23 +121,24 @@ function SearchBus() {
               theme={{
                 token: {
                   /* here is your global tokens */
-                  zIndexPopupBase:1
+                  zIndexPopupBase: 1
                 },
               }}
             >
               <FloatButton
-          zIndexPopupBase='1'
-            icon={<span class="material-symbols-outlined" style={{ color: 'gray',zIndex:'10' }}>
-              sync_alt
-            </span>}
-            type="default"
-            style={{
-              insetInlineEnd: 94,
-              position: 'absolute',
-              left: '-20px',
-              top: '30px'
-            }}
-          />
+                onClick={swapVal}
+                zIndexPopupBase='1'
+                icon={<span class="material-symbols-outlined" style={{ color: 'gray', zIndex: '10' }}>
+                  sync_alt
+                </span>}
+                type="default"
+                style={{
+                  insetInlineEnd: 94,
+                  position: 'absolute',
+                  left: '-20px',
+                  top: '30px'
+                }}
+              />
             </ConfigProvider>
 
           </div>
@@ -184,22 +148,20 @@ function SearchBus() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
               <label>To</label>
-              {/* <SearchInput
-                placeholder=""
-                style={{ border: 'none', outline: 'none', fontSize: '15px', fontWeight: '600' }}
-              /> */}
 
-<AutoComplete
-            // prefix={<i class="fa-solid fa-bus-simple"></i>}
-            // defaultValue={''}
-            notFoundContent={'No Data Found!'}
-            allowClear
-            options={options}
-            size='large'
-            onSelect={onSelect}
-            onSearch={(text) => setOptions(getPanelValue(text))}
-            // placeholder="input here"
-          />
+              <AutoComplete
+                // prefix={<i class="fa-solid fa-bus-simple"></i>}
+                // defaultValue={''}
+                value={toVal}
+                onChange={onToChange}
+                notFoundContent={'No Data Found!'}
+                allowClear
+                options={toOptions}
+                size='large'
+                onSelect={onToSelect}
+                onSearch={(text) => setToOptions(getToPanelValue(text))}
+              // placeholder="input here"
+              />
 
             </div>
 
@@ -209,7 +171,7 @@ function SearchBus() {
               <i class="fa-regular fa-calendar-days" style={{ fontSize: '25px', backgroundColor: 'white', position: 'relative', zIndex: '2' }}></i>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', width: '70%' }}>
-              <DatePicker suffixIcon='' superNextIcon='' superPrevIcon='' popupStyle='' inputReadOnly='true' size='large' defaultValue='' format={dateFormatList} placeholder='' style={{ fontSize: '25px', fontWeight: '600' }} />
+              <DatePicker suffixIcon='' superNextIcon='' superPrevIcon='' onChange={onDateChange} popupStyle='' inputReadOnly='true' size='large' defaultValue='' format={dateFormatList} placeholder='' style={{ fontSize: '25px', fontWeight: '600' }} />
             </div>
           </div>
           <div className='button-pannel' onClick={searchAllBuses}>

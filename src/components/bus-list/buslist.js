@@ -22,7 +22,7 @@ function Buslist() {
       <div className='bus-detail'>
 
         <div className='bus-name'>
-          <h5 className='title'>Raja Bus</h5>
+          <h5 className='bus-title'>Raja Bus</h5>
           <p className='sub-title'>2x2, Sleeper, AC</p>
         </div>
 

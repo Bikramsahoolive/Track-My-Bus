@@ -3,7 +3,7 @@ import Buslist from '../../components/bus-list/buslist';
 import FilterResult from '../../components/filter-result/filterResult';
 
 
-import React, { useState } from 'react';
+import React, {  useState,useMemo } from 'react';
 import { AutoComplete, ConfigProvider, FloatButton, DatePicker, Button } from 'antd';
 // import { dayjs, dateFormat, weekFormat } from '@ant-design/icons';
 
@@ -39,12 +39,23 @@ const customWeekStartEndFormat = (value) =>
 
 function SearchResult() {
 
+  // const [fromVal,setFromVal] = useState('');
+  // const [toVal,setToVal] = useState('');
+  // const [dateVal,setDateVal] = useState('');
+
   const [searchParams] = useSearchParams();
 
-  const fromParam = searchParams.get('from');
-  const toParam = searchParams.get('to');
-  const dojParam = searchParams.get('doj');
-  console.log(fromParam, toParam, dojParam); //using this params for search bus.
+  const fromVal = useMemo(() => searchParams.get('from') || '', [searchParams]);
+const toVal = useMemo(() => searchParams.get('to') || '', [searchParams]);
+const dateVal = useMemo(() => {
+  const date = searchParams.get('doj') || ''
+  if(date!==''){
+    const dateArr= date.split('/')
+    const newDateStr= `${dateArr[1]}/${dateArr[0]}/${dateArr[2]}`;
+    return newDateStr;
+  }
+}, [searchParams]);
+
 
 
   const [value, setValue] = useState('');
@@ -65,7 +76,7 @@ function SearchResult() {
         <div className='search-input' style={{ display: 'flex', justifyContent: 'space-around', width: '50%' }}>
           <AutoComplete
             prefix={<i class="fa-solid fa-bus-simple"></i>}
-            defaultValue={'Bhubaneswar'}
+            defaultValue={fromVal}
             notFoundContent={'No Data Found!'}
             allowClear
             options={options}
@@ -106,7 +117,7 @@ function SearchResult() {
 
           <AutoComplete
             prefix={<i class="fa-solid fa-location-dot"></i>}
-            defaultValue={'Chandbali'}
+            defaultValue={toVal}
             notFoundContent={'No Data Found!'}
             allowClear
             options={options}
@@ -122,7 +133,7 @@ function SearchResult() {
           <DatePicker suffixIcon=''style={{
             minWidth: '150px',
               margin:'0 10px'
-            }} superNextIcon='' prefix={<i class="fa-regular fa-calendar"></i>} superPrevIcon='' popupStyle='' inputReadOnly='true' size='large' defaultValue='' format={dateFormatList} placeholder=''  />
+            }} superNextIcon='' prefix={<i class="fa-regular fa-calendar"></i>} superPrevIcon='' popupStyle='' inputReadOnly='true' size='large' defaultValue={dayjs(dateVal)} format={dateFormatList} placeholder=''  />
 
           <Button type='primary' size='large'> Modify</Button>
         </div>
